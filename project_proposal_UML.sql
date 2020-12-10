@@ -20,6 +20,7 @@ create table `administrator`(
        `user_id` int not null,
        primary key (`admin_id`),
        constraint `admin_fk` foreign key (`user_id`) references `users` (`user_id`)
+       on update cascade on delete cascade
 );
 
 drop table if exists `website`;
@@ -45,13 +46,15 @@ drop table if exists `article`;
 create table `article`(
        `article_id` int not null,
        `article_name` varchar(300) not null,
-       `reading_time` varchar(50) not null,
+       `reading_time_minute` int not null,
        `web_address` varchar(500) not null,
-       `website_id` int not null,
-       `author_id` int,
+       `website_id` int default 0,
+       `author_id` int default 0,
        primary key (`article_id`),
-       constraint `website_fk` foreign key (`website_id`) references `website` (`website_id`),
+       constraint `website_fk` foreign key (`website_id`) references `website` (`website_id`)
+       on update cascade on delete cascade,
        constraint `author_fk` foreign key (`author_id`) references `author` (`author_id`)
+       on update cascade on delete cascade
 );
 
 drop table if exists `article_status`;
@@ -61,8 +64,10 @@ create table `article_status`(
        `user_id` int not null,
        `status` varchar(20) not null,
        primary key (`article_id`, `user_id`),
-       constraint `status_article_fk` foreign key (`article_id`) references `article` (`article_id`),
+       constraint `status_article_fk` foreign key (`article_id`) references `article` (`article_id`)
+       on update cascade on delete cascade,
        constraint `status_user_fk` foreign key (`user_id`) references `users` (`user_id`)
+       on update cascade on delete cascade
 );
 
 drop table if exists `review`;
@@ -73,8 +78,10 @@ create table `review`(
        `rating` float,
        `review` varchar(300),
        primary key (`article_id`, `user_id`),
-       constraint `review_article_fk` foreign key (`article_id`) references `article` (`article_id`),
+       constraint `review_article_fk` foreign key (`article_id`) references `article` (`article_id`)
+       on update cascade on delete cascade,
        constraint `review_user_fk` foreign key (`user_id`) references `users` (`user_id`)
+       on update cascade on delete cascade
 );
 
 drop table if exists `tags`;
@@ -84,8 +91,10 @@ create table `tags`(
        `user_id` int not null,
        `tags` varchar(50),
        primary key (`article_id`, `user_id`),
-       constraint `tags_article_fk` foreign key (`article_id`) references `article` (`article_id`),
+       constraint `tags_article_fk` foreign key (`article_id`) references `article` (`article_id`)
+       on update cascade on delete cascade,
        constraint `tags_user_fk` foreign key (`user_id`) references `users` (`user_id`)
+       on update cascade on delete cascade
 );
 
 drop table if exists `my_notes`;
@@ -95,6 +104,8 @@ create table `my_notes`(
        `user_id` int not null,
        `notes` varchar(4000),
        primary key (`article_id`, `user_id`),
-       constraint `notes_article_fk` foreign key (`article_id`) references `article` (`article_id`),
+       constraint `notes_article_fk` foreign key (`article_id`) references `article` (`article_id`)
+       on update cascade on delete cascade,
        constraint `notes_user_fk` foreign key (`user_id`) references `users` (`user_id`)
+       on update cascade on delete cascade
 );

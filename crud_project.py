@@ -31,7 +31,9 @@ try:
     # print("author tuple inserted.")
     # cnx.commit()
 
-    def insert_author():
+    def insert_author(cnx=cnx):
+
+        cur = cnx.cursor()
         auth_id = input("type author_id: ")
         auth_fname = input("type author first name: ")
         auth_lname = input("type author last name: ")
@@ -41,9 +43,10 @@ try:
         cur.execute(insert_author_stmt, (auth_id, auth_fname, auth_lname))
         print("author tuple inserted.")
         cnx.commit()
+        cur.close()
         return None
 
-    # insert_author()
+    insert_author()
 
     def delete_author():
         for row in rows:
@@ -77,7 +80,7 @@ try:
     def open_article_website():
         print("listing articles: ")
         cur_a = cnx.cursor()
-        article_query = "select article_id, article_name, reading_time from article"
+        article_query = "select article_id, article_name, reading_time_min from article"
         cur_a.execute(article_query)
         all_articles = cur_a.fetchall()
         for row in all_articles:
