@@ -1,7 +1,7 @@
 
-create database if not exists `articles`;
+create database if not exists `kumar_articles`;
 
-use `articles`;
+use `kumar_articles`;
 
 drop table if exists `users`;
 

@@ -18,7 +18,7 @@ try:
         user="root",
         # password=password,
         password="mysqlmac",
-        db="articles",
+        db="kumar_articles",
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
     )
@@ -28,11 +28,6 @@ except pymysql.err.OperationalError:
 
 try:
     cur = cnx.cursor()
-    # stmt_select = "select * from author"
-    # cur.execute(stmt_select)
-    # rows = cur.fetchall()
-    # for row in rows:
-    #     print(row)
 
     print("--------------------------------------------------")
     print("function id -> function")

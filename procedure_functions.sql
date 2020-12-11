@@ -1,4 +1,4 @@
-use articles;
+use kumar_articles;
 
 drop PROCEDURE if EXISTS `articles_greater_than_reading_time`;
 

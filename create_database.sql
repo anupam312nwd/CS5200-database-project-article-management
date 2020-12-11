@@ -1,5 +1,8 @@
 
-use articles;
+use kumar_articles;
+
+insert into administrator (admin_id, user_id)
+values (1, 1);
 
 insert into users (user_id, fname, lname, username)
 values  (1, 'Anupam', 'Kumar', 'anupamkumar'),
