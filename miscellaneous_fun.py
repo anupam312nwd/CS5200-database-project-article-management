@@ -3,6 +3,42 @@
 import webbrowser
 
 
+def tryexcept_int_val_stmt(k, stmt):
+    while True:
+        try:
+            x = int(input(stmt))
+        except ValueError:
+            print(
+                "that was not valid. please type an integer between 1 and {} -- ".format(
+                    k
+                )
+            )
+        else:
+            if x in range(1, k + 1):
+                break
+            else:
+                print(
+                    "Out of Range. please type an integer between 1 and {} -- ".format(
+                        k
+                    )
+                )
+    return x
+
+
+def tryexcept_val_list(lst, stmt):
+    while True:
+        try:
+            var = int(input(stmt))
+        except ValueError:
+            print("Not valid. Please try again...")
+        else:
+            if var in lst:
+                break
+            else:
+                print("value not in list. please try again.")
+    return var
+
+
 def open_article_website(cnx):
     print("listing articles: ")
     cur_a = cnx.cursor()
